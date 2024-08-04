@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Navigation Menu</title>
+    <style>
+        /* Navigation Menu Styles */
+       .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-image: linear-gradient(to bottom, #333, #444);
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background-color 0.5s ease;
+        }
+
+       .nav-menu.scrolled {
+            background-image: linear-gradient(to bottom, #444, #555);
+        }
+
+       .nav-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+       .nav-menu li {
+            margin-right: 20px;
+        }
+
+       .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.5s ease;
+        }
+
+       .nav-menu a:hover {
+            color: #ccc;
+        }
+
+       .nav-menu.active {
+            color: #ccc;
+        }
+
+        /* Background Styles */
+        body {
+            background-image: url('https://images.unsplash.com/photo-1519681393784-8a6e6f5a3f3c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- JavaScript Code -->
+    <script>
+        // Get the navigation menu element
+        const navMenu = document.querySelector('.nav-menu');
+
+        // Add event listener to window scroll event
+        window.addEventListener('scroll', () => {
+            // Check if the user has scrolled down
+            if (window.scrollY > 200) {
+                navMenu.classList.add('scrolled');
+            } else {
+                navMenu.classList.remove('scrolled');
+            }
+        });
+
+        // Add event listener to navigation menu items
+        navMenu.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('mouseover', () => {
+                navMenu.classList.add('hovered');
+            });
+
+            link.addEventListener('mouseout', () => {
+                navMenu.classList.remove('hovered');
+            });
+        });
+    </script>
+</body>
+</html>
